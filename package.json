@@ -1,16 +1,25 @@
 {
-  "name": "employee_tracker",
+  "name": "employee-tracker",
   "version": "1.0.0",
   "description": "",
   "main": "employee_tracker.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node employee_tracker.js"
+    "start": "node employee_tracker.js "
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KingKitty89/employee-tracker.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KingKitty89/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/KingKitty89/employee-tracker#readme",
   "dependencies": {
-    "mysql": "^2.16.0"
+    "inquirer": "^7.2.0",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
   }
 }
