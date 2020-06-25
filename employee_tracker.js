@@ -5,15 +5,8 @@ const cTable = require('console.table');
 
 var connection = mysql.createConnection({
     host: "localhost",
-
-
     port: 3306,
-
-
-
     user: "root",
-
-   
     password: "Ptmdlbts1$",
     database: "employee_trackerDB"
 });
@@ -165,62 +158,43 @@ function addEmployee() {
         });
 };
 
+//update employee role
 function updateRole() {
-    let allEmployees = [];
-    connection.query("SELECT * FROM employee", function(err, answer) {
-     
-      for (let i = 0; i < answer.length; i++) {
-        let employeeString =
-          answer[i].id + " " + answer[i].first_name + " " + answer[i].last_name;
-        allEmployees.push(employeeString);
-      }
-     
+connection.query("SELECT * FROM employee", function(err, employees) {
+       const choices = employees.map(o => {
+        return {value: o.id, name: `${o.first_name} ${o.last_name}`};
+      });
+    
       inquirer
         .prompt([
           {
-            type: "list",
+            type: "rawlist",
             name: "updateEmpRole",
             message: "select employee to update role",
-            choices: allEmployees
+            choices: choices
           },
           {
             type: "list",
             message: "select new role",
-            choices: ["Sales Lead", "Salesperson", "Lead Engineer", "Accountant"],
+            choices: [
+                {value: 1, name: "Sales Lead"},
+                {value: 2, name: "Salesperson"}, 
+                {value: 3, name: "Lead Engineer"}, 
+                {value: 4, name: "Accountant"},
+                {value: 5, name: "Legal Team Lead"},
+                {value: 6, name: "Lawyer"},
+                {value: 7, name: "Software Engineer"}
+            ],
             name: "newrole"
           }
         ])
         .then(function(answer) {
-          console.log("about to update", answer);
-          const idToUpdate = {};
-          idToUpdate.employeeId = parseInt(answer.updateEmpRole.split(" ")[0]);
-          switch (answer.choices) {
-            case "Sales Lead":
-                idToUpdate.role_id = 1;
-                break;
-            case "Salesperson":
-                idToUpdate.role_id = 1;
-                break;
-            case "Lead Engineer":
-                idToUpdate.role_id = 2;
-                break;
-            case "Accountant":
-                idToUpdate.role_id = 3;
-                break;
-            case "Legal Team Lead":
-                idToUpdate.role_id = 4;
-                break;
-            case "Lawyer":
-                idToUpdate.role_id = 4;
-                break;
-            case "Software Engineer":
-                idToUpdate.role_id = 2;
-                break;
-          }
-            connection.query(
-                "UPDATE employee SET role_id=? WHERE first_name= ?",[answer.updateEmpRole, answer.newrole],
+          console.log("about to update", answer, answer.newrole);
         
-            function(err, data) {
+          connection.query(
+            "UPDATE employee SET role_id = ? WHERE id = ?",
+            [answer.newrole, answer.updateEmpRole],
+            function(err, answer) {
               viewEmployees();
             }
           );
