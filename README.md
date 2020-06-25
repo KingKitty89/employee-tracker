@@ -11,18 +11,16 @@
 For this project I created a command line interface that will make it easy for non-developers to use and interact with a database of informtion. The application is a content management system that keeps track of employee information. It allows a user to view a database of employees and their corresponding roles, titles, salaries, role id, and manager's id. The user can view all employees, or minimize their search criteria and view all employees by department or role. The user will have the ablitity to add an employee to the database by providing a corresopnding role id and manager id. The user will also be able to update an employee's role. I used a combination of node, inquirer, and MySQL to build this application.
 
 
-
-
 ![Demo](./assets/emptrack1.png)
-
 
 
 ![Demo](./assets/emptrack2.png)
 
 
-
 ![Demo](./assets/emptrack3.png)
 
+
+![Demo](./assets/emptrack4.png)
 
 
 ![Demo](./assets/emptrack5.png)
