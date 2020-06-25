@@ -168,7 +168,7 @@ connection.query("SELECT * FROM employee", function(err, employees) {
       inquirer
         .prompt([
           {
-            type: "rawlist",
+            type: "list",
             name: "updateEmpRole",
             message: "select employee to update role",
             choices: choices
@@ -189,7 +189,7 @@ connection.query("SELECT * FROM employee", function(err, employees) {
           }
         ])
         .then(function(answer) {
-          console.log("about to update", answer, answer.newrole);
+          console.log("\nUpdate is complete. Please see your change to the database below.\n"),
         
           connection.query(
             "UPDATE employee SET role_id = ? WHERE id = ?",
@@ -200,4 +200,4 @@ connection.query("SELECT * FROM employee", function(err, employees) {
           );
         });
     });
-  }
+  };
